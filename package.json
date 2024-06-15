@@ -11,6 +11,7 @@
     "lint": "vue-cli-service lint",
     "dev": "vue-cli-service serve",
     "dev:18": "export NODE_OPTIONS=--openssl-legacy-provider;vue-cli-service serve",
+    "format": "prettier --write \"src/**/*.js\" \"src/**/*.vue\" \"mock/**/*.js\" \"demo/**/*.js\"",
     "reinstall": "rm -rf node_modules && pnpm install"
   },
   "dependencies": {
@@ -25,19 +26,21 @@
   },
   "devDependencies": {
     "@vue/babel-helper-vue-jsx-merge-props": "^1.4.0",
-    "@vue/cli-plugin-babel": "~4.4.0",
-    "@vue/cli-plugin-eslint": "~4.4.0",
-    "@vue/cli-service": "~4.4.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.20.0",
+    "@vue/cli-plugin-babel": "^5.0.8",
+    "@vue/cli-plugin-eslint": "^5.0.8",
+    "@vue/cli-plugin-router": "^5.0.8",
+    "@vue/cli-plugin-vuex": "^5.0.8",
+    "@vue/cli-service": "^5.0.8",
+    "@babel/eslint-parser": "^7.21.3",
     "@vue/eslint-config-prettier": "^7.1.0",
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.39.0",
+    "eslint-plugin-vue": "^9.11.0",
+    "eslint-plugin-import": "^2.20.0",
     "prettier": "^2.8.8",
-    "eslint-plugin-vue": "^6.2.2",
     "sass": "^1.23.7",
     "sass-loader": "^8.0.0",
-    "svg-sprite-loader": "^4.1.6",
+    "svg-sprite-loader": "^6.0.11",
     "vue-template-compiler": "^2.6.11"
   },
   "homepage": "https://jakhuang.github.io/form-generator"

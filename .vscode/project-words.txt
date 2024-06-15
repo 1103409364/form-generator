@@ -23,6 +23,7 @@ screenfull
 sortablejs
 stylelint
 Tesseract
+Tinymce
 unref
 vnode
 webrtc
