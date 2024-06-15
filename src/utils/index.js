@@ -8,38 +8,40 @@
  * @param {number} len 【可选】缩进单位，空格数
  */
 export function indent(str, num, len = 2) {
-  if (num === 0) return str
-  const isLeft = num < 0; const result = []; let reg; let
-    spaces = ''
+  if (num === 0) return str;
+  const isLeft = num < 0;
+  const result = [];
+  let reg;
+  let spaces = '';
   if (isLeft) {
-    num *= -1
-    reg = new RegExp(`(^\\s{0,${num * len}})`, 'g')
+    num *= -1;
+    reg = new RegExp(`(^\\s{0,${num * len}})`, 'g');
   } else {
-    for (let i = 0; i < num * len; i++) spaces += ' '
+    for (let i = 0; i < num * len; i++) spaces += ' ';
   }
 
-  str.split('\n').forEach(line => {
-    line = isLeft ? line.replace(reg, '') : spaces + line
-    result.push(line)
-  })
-  return result.join('\n')
+  str.split('\n').forEach((line) => {
+    line = isLeft ? line.replace(reg, '') : spaces + line;
+    result.push(line);
+  });
+  return result.join('\n');
 }
 
 // 首字母大小
 export function titleCase(str) {
-  return str.replace(/( |^)[a-z]/g, L => L.toUpperCase())
+  return str.replace(/( |^)[a-z]/g, (L) => L.toUpperCase());
 }
 
 // 下划转驼峰
 export function camelCase(str) {
-  return str.replace(/-[a-z]/g, str1 => str1.substr(-1).toUpperCase())
+  return str.replace(/-[a-z]/g, (str1) => str1.substr(-1).toUpperCase());
 }
 
 export function isNumberStr(str) {
-  return /^[+-]?(0|([1-9]\d*))(\.\d+)?$/g.test(str)
+  return /^[+-]?(0|([1-9]\d*))(\.\d+)?$/g.test(str);
 }
 
-export const exportDefault = 'export default '
+export const exportDefault = 'export default ';
 
 export const beautifierConf = {
   html: {
@@ -59,7 +61,7 @@ export const beautifierConf = {
     indent_inner_html: true,
     comma_first: false,
     e4x: true,
-    indent_empty_lines: true
+    indent_empty_lines: true,
   },
   js: {
     indent_size: '2',
@@ -78,80 +80,86 @@ export const beautifierConf = {
     indent_inner_html: true,
     comma_first: false,
     e4x: true,
-    indent_empty_lines: true
-  }
-}
+    indent_empty_lines: true,
+  },
+};
 
 function stringify(obj) {
   return JSON.stringify(obj, (key, val) => {
     if (typeof val === 'function') {
-      return `${val}`
+      return `${val}`;
     }
-    return val
-  })
+    return val;
+  });
 }
 
 function parse(str) {
   JSON.parse(str, (k, v) => {
     if (v.indexOf && v.indexOf('function') > -1) {
-      return eval(`(${v})`)
+      return eval(`(${v})`);
     }
-    return v
-  })
+    return v;
+  });
 }
 
 export function jsonClone(obj) {
-  return parse(stringify(obj))
+  return parse(stringify(obj));
 }
 
 // 深拷贝对象
 export function deepClone(obj) {
-  const _toString = Object.prototype.toString
+  const _toString = Object.prototype.toString;
 
   // null, undefined, non-object, function
   if (!obj || typeof obj !== 'object') {
-    return obj
+    return obj;
   }
 
   // DOM Node
   if (obj.nodeType && 'cloneNode' in obj) {
-    return obj.cloneNode(true)
+    return obj.cloneNode(true);
   }
 
   // Date
   if (_toString.call(obj) === '[object Date]') {
-    return new Date(obj.getTime())
+    return new Date(obj.getTime());
   }
 
   // RegExp
   if (_toString.call(obj) === '[object RegExp]') {
-    const flags = []
-    if (obj.global) { flags.push('g') }
-    if (obj.multiline) { flags.push('m') }
-    if (obj.ignoreCase) { flags.push('i') }
+    const flags = [];
+    if (obj.global) {
+      flags.push('g');
+    }
+    if (obj.multiline) {
+      flags.push('m');
+    }
+    if (obj.ignoreCase) {
+      flags.push('i');
+    }
 
-    return new RegExp(obj.source, flags.join(''))
+    return new RegExp(obj.source, flags.join(''));
   }
 
-  const result = Array.isArray(obj) ? [] : obj.constructor ? new obj.constructor() : {}
+  const result = Array.isArray(obj) ? [] : obj.constructor ? new obj.constructor() : {};
 
   for (const key in obj) {
-    result[key] = deepClone(obj[key])
+    result[key] = deepClone(obj[key]);
   }
 
-  return result
+  return result;
 }
 
-const toStr = Function.prototype.call.bind(Object.prototype.toString)
+const toStr = Function.prototype.call.bind(Object.prototype.toString);
 export function isObjectObject(t) {
-  return toStr(t) === '[object Object]'
+  return toStr(t) === '[object Object]';
 }
 export function isObjectArray(t) {
-  return toStr(t) === '[object Array]'
+  return toStr(t) === '[object Array]';
 }
 export function isObjectNull(t) {
-  return toStr(t) === '[object Null]'
+  return toStr(t) === '[object Null]';
 }
 export function isObjectUnde(t) {
-  return toStr(t) === '[object Undefined]'
+  return toStr(t) === '[object Undefined]';
 }
