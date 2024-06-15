@@ -1,0 +1,22 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "chrome",
+      "request": "launch",
+      "name": "vuejs: chrome canary",
+      "url": "http://localhost:8081",
+      "webRoot": "${workspaceFolder}",
+      "userDataDir": false, //"/Users/z/Downloads/userData"
+      "runtimeExecutable": "canary", // 使用金丝雀版
+      // "runtimeArgs": ["--auto-open-devtools-for-tabs"], 自动打开 devtools
+      "sourceMapPathOverrides": {
+        // "meteor://💻app/*": "${workspaceFolder}/*",
+        "webpack:///./~/*": "$workspaceFolder}/node modules/*",
+        "webpack://?:*/*": "${workspaceFolder}/*",
+        "webpack://vue-admin/src/*": "${workspaceFolder}/src/*"
+      }
+      // "preLaunchTask": "vuejs: start"
+    }
+  ]
+}
