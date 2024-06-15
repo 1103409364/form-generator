@@ -1,0 +1,76 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:vue/recommended",
+    "@vue/eslint-config-prettier" // 包含 "eslint-config-prettier": "^8.3.0", "eslint-plugin-prettier": "^4.0.0"
+  ],
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+    // "parser": "@babel/eslint-parser",
+    // "requireConfigFile": false,
+    // "ecmaFeatures": {
+    //   // 支持装饰器
+    //   "legacyDecorators": true
+    // }
+  },
+  "plugins": ["vue"],
+  "rules": {
+    "camelcase": 2,
+    "no-console": 1,
+    "no-debugger": 1,
+    "prettier/prettier": ["error", { "semi": true }],
+    "vue/no-v-html": 0,
+    "vue/multi-word-component-names": 0,
+    "vue/component-name-in-template-casing": [
+      "error",
+      "kebab-case",
+      {
+        "registeredComponentsOnly": false,
+        "ignores": []
+      }
+    ], // dom 模板中组件名 kebab-case
+    // "vue/name-property-casing": ["error", "PascalCase"], //组件名PascalCase
+    // "vue/match-component-file-name": [
+    //   "error",
+    //   { "extensions": ["vue"], "shouldMatchCase": true }
+    // ], //要求组件name属性匹配其文件名
+    "vue/prop-name-casing": ["error", "camelCase"], //组件内 props camelCase
+    "vue/this-in-template": ["error", "never"], //不要在模版中使用this
+    "vue/custom-event-name-casing": ["error", "kebab-case"], //自定义事件名称始终使用kebab-case(短横线命名)
+    "vue/attribute-hyphenation": ["error", "always", { "ignore": [] }], //标签属性名称始终使用kebab-case(短横线命名)
+    // "vue/html-self-closing": 0, // 标签自动闭合
+    "vue/attributes-order": [
+      "error",
+      {
+        "order": [
+          "DEFINITION",
+          "LIST_RENDERING",
+          "CONDITIONALS",
+          "RENDER_MODIFIERS",
+          "GLOBAL",
+          "UNIQUE",
+          "TWO_WAY_BINDING",
+          "OTHER_DIRECTIVES",
+          "OTHER_ATTR",
+          "EVENTS",
+          "CONTENT"
+        ]
+      }
+    ] //标签属性、指令排序
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/__tests__/*.{j,t}s?(x)",
+        "**/tests/unit/**/*.spec.{j,t}s?(x)"
+      ],
+      "env": { "jest": true }
+    }
+  ]
+}
